@@ -12,9 +12,17 @@ class Database {
   }
 
   async connect(options) {
-    let db = await mongoose.connect(options.CONNECTION_STRING);
+    try {
+      console.log("Database connection starting....");
+      let db = await mongoose.connect(options.CONNECTION_STRING);
 
-    this.mongoConnection = db;
+      this.mongoConnection = db;
+
+      console.log("Database connection established");
+    } catch (err) {
+      console.log(err);
+      process.exit(1);
+    }
   }
 }
 
