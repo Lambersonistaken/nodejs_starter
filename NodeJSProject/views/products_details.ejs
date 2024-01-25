@@ -6,6 +6,15 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Ürünler Detay</h1>
+    <h1><%= name %></h1>
+    <p><%= price %>$</p>
+    <p>
+        <% if (isActive) { %>
+         <span>Product for sale!</span>
+        <% }  else { %>
+            <span>Product not for sale!</span>
+        <% } %>
+
+    </p> 
 </body>
 </html>

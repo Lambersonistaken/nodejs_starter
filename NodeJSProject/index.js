@@ -9,10 +9,12 @@ const data = [
 ];
 
 app.set("view engine", "ejs"); // view engine olarak ejs kullanılacak
+app.use(express.static("public")); // public klasörü static olarak kullanılacak
 
 // middleware routing
 app.use("/products/:id", (req, res) => {
-  res.render("products_details");
+  const urun = data.find((item) => item.id == req.params.id);
+  res.render("products_details", urun);
 });
 
 app.use("/products", (req, res) => {
