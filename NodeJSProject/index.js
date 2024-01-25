@@ -3,13 +3,35 @@ const app = express();
 const port = 3000;
 
 const data = [
-  { id: 1, name: "Samsung S6", price: 3000, isActive: true },
-  { id: 2, name: "Samsung S7", price: 4000, isActive: true },
-  { id: 3, name: "Samsung S8", price: 5000, isActive: true },
+  {
+    id: 1,
+    name: "Samsung S6",
+    price: 3000,
+    isActive: true,
+    imageURL: "s6.png",
+    isHome: true,
+  },
+  {
+    id: 2,
+    name: "Samsung S7",
+    price: 4000,
+    isActive: true,
+    imageURL: "s7.png",
+    isHome: true,
+  },
+  {
+    id: 3,
+    name: "Samsung S8",
+    price: 5000,
+    isActive: true,
+    imageURL: "s8.png",
+    isHome: false,
+  },
 ];
 
 app.set("view engine", "ejs"); // view engine olarak ejs kullanılacak
 app.use(express.static("public")); // public klasörü static olarak kullanılacak
+app.use(express.static("node_modules")); // bootstrap klasörü static olarak kullanılacak
 
 // middleware routing
 app.use("/products/:id", (req, res) => {
@@ -25,7 +47,9 @@ app.use("/products", (req, res) => {
 });
 
 app.use("/", (req, res) => {
-  res.render("index");
+  res.render("index", {
+    products: data,
+  });
 });
 
 app.listen(port, () => {

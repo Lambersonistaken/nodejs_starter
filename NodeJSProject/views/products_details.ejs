@@ -3,18 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/bootstrap/dist/css/bootstrap.min.css">
     <title>Document</title>
 </head>
-<body>
-    <h1><%= name %></h1>
-    <p><%= price %>$</p>
-    <p>
-        <% if (isActive) { %>
-         <span>Product for sale!</span>
-        <% }  else { %>
-            <span>Product not for sale!</span>
-        <% } %>
-
-    </p> 
+<body class="bg-warning">
+    <div class="container mt-3">
+        <div class="row">
+            <div class="col-12">
+                
+                    <div class="card mb-3">
+                        <div class="row">
+                            <div class="col-4">
+                                <img src="/images/<%= imageURL %>" alt="" class="img-fluid">
+                            </div>
+                            <div class="col-8">
+                                <div class="card-body">
+                                    <h5 class="card-title"><%= name %></h5>
+                                    <p class="card-text"><%= price %>$</p>
+                                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ad sequi deserunt fugiat ipsam atque, doloribus beatae suscipit, et, vel corporis explicabo incidunt similique aliquam dolor nemo modi in perspiciatis maxime.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                
+            </div>
+        </div>
+    </div> 
 </body>
 </html>
