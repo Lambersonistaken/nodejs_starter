@@ -11,6 +11,11 @@ let connection = mysql.createConnection({
   database: "nodedb",
 });
 
+connection.connect(function (err) {
+  if (err) throw err;
+  console.log("MYSQL Connected!");
+});
+
 const data = [
   {
     id: 1,
