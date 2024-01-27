@@ -2,6 +2,15 @@ const express = require("express");
 const app = express();
 const port = 3000;
 
+const mysql = require("mysql2");
+
+let connection = mysql.createConnection({
+  host: "localhost",
+  user: "root",
+  password: "123456789",
+  database: "nodedb",
+});
+
 const data = [
   {
     id: 1,
