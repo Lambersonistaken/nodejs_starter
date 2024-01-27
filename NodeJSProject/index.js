@@ -2,16 +2,6 @@ const express = require("express");
 const app = express();
 const port = 3000;
 
-const mysql = require("mysql2");
-const config = require("./config");
-
-let connection = mysql.createConnection(config.db);
-
-connection.connect(function (err) {
-  if (err) throw err;
-  console.log("MYSQL Connected!");
-});
-
 const data = [
   {
     id: 1,
@@ -39,6 +29,8 @@ const data = [
   },
 ];
 
+const db = require("./data/db");
+
 app.set("view engine", "ejs"); // view engine olarak ejs kullanılacak
 app.use(express.static("public")); // public klasörü static olarak kullanılacak
 app.use(express.static("node_modules")); // bootstrap klasörü static olarak kullanılacak
@@ -56,10 +48,29 @@ app.use("/products", (req, res) => {
   });
 });
 
-app.use("/", (req, res) => {
-  res.render("index", {
-    products: data,
-  });
+app.use("/", async (req, res) => {
+  // db.execute("SELECT * FROM products")
+  //   .then((data) => {
+  //     res.render("index", {
+  //       products: data[0],
+  //     });
+  //   })
+  //   .catch((err) => {
+  //     console.log(err);
+  //   });
+
+  try {
+    const [products] = await db.execute("SELECT * FROM products");
+    res.render("index", {
+      products: data,
+    });
+  } catch (error) {
+    console.log(error);
+  }
+
+  // res.render("index", {
+  //   products: data,
+  // });
 });
 
 app.listen(port, () => {
