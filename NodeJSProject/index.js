@@ -3,13 +3,9 @@ const app = express();
 const port = 3000;
 
 const mysql = require("mysql2");
+const config = require("./config");
 
-let connection = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "123456789",
-  database: "nodedb",
-});
+let connection = mysql.createConnection(config.db);
 
 connection.connect(function (err) {
   if (err) throw err;
